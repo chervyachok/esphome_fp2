@@ -93,7 +93,7 @@ CONFIG_SCHEMA = (
     cv.Schema(
         {
             cv.GenerateID(): cv.declare_id(FP2Component),
-            cv.Required("accel"): cv.use_id(AqaraFP2Accel),
+            cv.Optional("accel"): cv.use_id(AqaraFP2Accel),
             cv.Optional(CONF_RESET_PIN): pins.gpio_output_pin_schema,
             cv.Optional(CONF_MOUNTING_POSITION, default="left_corner"): cv.enum(
                 MOUNTING_POSITIONS
@@ -203,5 +203,5 @@ async def to_code(config):
 
     cg.add(var.set_map_config_json(json.dumps(map_config_data, separators=(",", ":"))))
 
-    accel = await cg.get_variable(config["accel"])
+    accel = cg.get_variable(config["accel"])
     cg.add(var.set_fp2_accel(accel))
