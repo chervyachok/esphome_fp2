@@ -82,9 +82,7 @@ ZONE_SCHEMA = cv.Schema(
         cv.GenerateID(CONF_ID): cv.declare_id(FP2Zone),
         cv.Required(CONF_GRID): parse_ascii_grid,
         cv.Optional(CONF_SENSITIVITY, default="medium"): cv.enum(SENSITIVITY_LEVELS),
-        cv.Optional("presence_sensor"): cv.use_id(binary_sensor.BinarySensor),
-        cv.Optional("motion_sensor"): cv.use_id(binary_sensor.BinarySensor),
-        cv.Optional("zone_map_sensor"): cv.use_id(text_sensor_.TextSensor),
+       
     }
 )
 
@@ -128,16 +126,6 @@ async def to_code(config):
                 zone_conf[CONF_SENSITIVITY],
             )
             await cg.register_component(var, zone_conf)
-
-            if "presence_sensor" in zone_conf:
-                sens = await cg.get_variable(zone_conf["presence_sensor"])
-                cg.add(var.set_presence_sensor(sens))
-
-            if "motion_sensor" in zone_conf:
-                sens = await cg.get_variable(zone_conf["motion_sensor"])
-                cg.add(var.set_motion_sensor(sens))
-
-           
 
             zones.append(var)
 
