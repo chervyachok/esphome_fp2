@@ -159,15 +159,21 @@ async def to_code(config):
         sw = await switch.new_switch(config[CONF_LOCATION_REPORT_SWITCH])
         cg.add(var.set_location_report_switch(sw))
 
-    for key, setter in [
-        ("edge_label_grid_sensor", var.set_edge_label_grid_sensor),
-        ("entry_exit_grid_sensor", var.set_entry_exit_grid_sensor),
-        ("interference_grid_sensor", var.set_interference_grid_sensor),
-        ("mounting_position_sensor", var.set_mounting_position_sensor),
-    ]:
-        if key in config:
-            sens = await cg.get_variable(config[key][CONF_ID])
-            cg.add(setter(sens))
+    if "edge_label_grid_sensor" in config:
+        sens = await text_sensor_.new_text_sensor(config["edge_label_grid_sensor"])
+        cg.add(var.set_edge_label_grid_sensor(sens))
+    
+    if "entry_exit_grid_sensor" in config:
+        sens = await text_sensor_.new_text_sensor(config["entry_exit_grid_sensor"])
+        cg.add(var.set_entry_exit_grid_sensor(sens))
+    
+    if "interference_grid_sensor" in config:
+        sens = await text_sensor_.new_text_sensor(config["interference_grid_sensor"])
+        cg.add(var.set_interference_grid_sensor(sens))
+    
+    if "mounting_position_sensor" in config:
+        sens = await text_sensor_.new_text_sensor(config["mounting_position_sensor"])
+        cg.add(var.set_mounting_position_sensor(sens))
 
     map_config_data = {
         "mounting_position": config[CONF_MOUNTING_POSITION],
