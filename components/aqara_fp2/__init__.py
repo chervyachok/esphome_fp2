@@ -14,7 +14,7 @@ from esphome.util import Registry
 from ..aqara_fp2_accel import AqaraFP2Accel
 
 DEPENDENCIES = ["uart"]
-AUTO_LOAD = ["binary_sensor", "text_sensor", "switch"]
+№AUTO_LOAD = ["binary_sensor", "text_sensor", "switch"]
 
 aqara_fp2_ns = cg.esphome_ns.namespace("aqara_fp2")
 FP2Component = aqara_fp2_ns.class_("FP2Component", cg.Component, uart.UARTDevice)
