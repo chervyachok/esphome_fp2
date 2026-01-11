@@ -2,6 +2,9 @@ import json
 
 import esphome.codegen as cg
 import esphome.config_validation as cv
+
+raise cv.Invalid("DEBUG: MY aqara_fp2 __init__.py IS LOADED")
+
 from esphome import pins
 from esphome.components import binary_sensor, switch, uart
 from esphome.components import text_sensor as text_sensor_
