@@ -137,9 +137,7 @@ async def to_code(config):
                 sens = await cg.get_variable(zone_conf["motion_sensor"])
                 cg.add(var.set_motion_sensor(sens))
 
-            if "zone_map_sensor" in zone_conf:
-                sens = await cg.get_variable(zone_conf["zone_map_sensor"])
-                cg.add(var.set_map_sensor(sens))
+           
 
             zones.append(var)
 
