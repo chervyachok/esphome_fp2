@@ -635,8 +635,14 @@ class AqaraFP2Card extends HTMLElement {
         // Y = 0: Top edge (closest to sensor), Y = 800: Bottom edge (farthest from sensor)
         // Conversion (with X flipped to match canvas coords where 0 is left):
         // Grid_X = (-X + 400) / 800.0 * 14.0, Grid_Y = Y / 800.0 * 14.0
-        gridX = (-target.x + 400) / 800.0 * 14.0;
-        gridY = target.y / 800.0 * 14.0;
+        //gridX = (-target.x + 400) / 800.0 * 14.0;
+        //gridY = target.y / 800.0 * 14.0;
+
+        // X: інвертуємо, щоб ліва сторона карти = ліва сторона кімнати
+        gridX = (MAX_X - target.x) / (2 * MAX_X) * GRID_SIZE;
+
+        // Y: від сенсора вниз
+        gridY = target.y / MAX_Y * GRID_SIZE;
       } else {
         // Wall mounting mode - TODO: coordinate conversion not yet verified
         // Stubbing with basic conversion for now
