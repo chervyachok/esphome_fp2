@@ -69,7 +69,7 @@ class AqaraFP2Card extends HTMLElement {
   }
 
   async fetchMapConfig() {
-    const deviceName = this.config.entity_prefix.replace(/^[^.]+\./, '');
+    const deviceName = this.config.map_config_service.replace(/^[^.]+\./, '');
     const service = `${deviceName}_get_map_config`;
 
     try {
