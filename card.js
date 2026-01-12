@@ -69,9 +69,8 @@ class AqaraFP2Card extends HTMLElement {
   }
 
   async fetchMapConfig() {
-    const service =
-  this.config.map_config_service ||
-  `${this.config.entity_prefix.replace(/^[^.]+\./, '')}_get_map_config`;
+    const service = this.config.map_config_service ||
+      `${this.config.entity_prefix.replace(/^[^.]+\./, '')}_get_map_config`;
 
     try {
       console.log(`[FP2 Card] Fetching map config via service: esphome.${service}`);
