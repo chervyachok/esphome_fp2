@@ -44,11 +44,10 @@ class AqaraFP2Card extends HTMLElement {
   }
 
   getReportTargetsSwitchEntity() {
-    // Convert entity_prefix (e.g., "sensor.fp2_living_room") to switch entity
-    // Result: "switch.fp2_living_room_report_targets"
-    const prefix = this.config.entity_prefix;
-    const deviceName = prefix.replace(/^[^.]+\./, ''); // Remove domain prefix (sensor., etc.)
-    return `switch.${deviceName}_report_targets`;
+    return (
+      this.config.report_switch_entity ||
+        `switch.${this.config.entity_prefix.replace(/^[^.]+\./, '')}_report_targets`
+    );
   }
 
   toggleLiveView() {
