@@ -623,7 +623,9 @@ class AqaraFP2Card extends HTMLElement {
 
   drawTargets(data, minX, maxX, minY, maxY, cellSize) {
     if (!data.targets || !Array.isArray(data.targets)) return;
-
+    const GRID_SIZE = 14;
+    const MAX_X = 3500;
+    const MAX_Y = 7000;
     data.targets.forEach((target) => {
       let gridX, gridY;
 
